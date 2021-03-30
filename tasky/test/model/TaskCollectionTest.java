@@ -1,18 +1,15 @@
-package ch.fhnw.oop2.ub.tasky.test.model;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
-import java.time.LocalDate;
+package tasky.test.model;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import ch.fhnw.oop2.ub.tasky.java.model.State;
-import ch.fhnw.oop2.ub.tasky.java.model.Task;
-import ch.fhnw.oop2.ub.tasky.java.model.TaskContainer;
-import ch.fhnw.oop2.ub.tasky.java.model.TaskData;
-import ch.fhnw.oop2.ub.tasky.java.model.TaskMap;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import java.time.LocalDate;
+import tasky.java.model.State;
+import tasky.java.model.Task;
+import tasky.java.model.TaskContainer;
+import tasky.java.model.TaskData;
+import tasky.java.model.TaskMap;
 
 public class TaskCollectionTest {
   TaskContainer data;
@@ -24,8 +21,8 @@ public class TaskCollectionTest {
   public void initialize() {
     data = new TaskMap();
     task1 = new TaskData("Title 1", "Description 1", State.DOING, LocalDate.now());
-    task2 = new TaskData("Title 1", "Description 1", State.DOING, LocalDate.now());
-    task3 = new TaskData("Title 1", "Description 1", State.DOING, LocalDate.now());
+    task2 = new TaskData("Title 2", "Description 2", State.DOING, LocalDate.now());
+    task3 = new TaskData("Title 3", "Description 3", State.DOING, LocalDate.now());
   }
 
   @Test
@@ -35,6 +32,7 @@ public class TaskCollectionTest {
     data.delete(1);
     Task t1 = data.get(3);
     assertNull(t1);
+
 
     data.add(task2);
     data.delete(2);

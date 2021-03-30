@@ -1,15 +1,12 @@
-package ch.fhnw.oop2.ub.tasky.test.model;
+package tasky.test.model;
 
 import static org.junit.Assert.assertEquals;
-
 import java.time.LocalDate;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import ch.fhnw.oop2.ub.tasky.java.model.State;
-import ch.fhnw.oop2.ub.tasky.java.model.Task;
-import ch.fhnw.oop2.ub.tasky.java.model.TaskData;
+import tasky.java.model.State;
+import tasky.java.model.Task;
+import tasky.java.model.TaskData;
 
 public class TaskTest {
 
