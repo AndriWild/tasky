@@ -1,11 +1,10 @@
 package tasky.java;
 
-import tasky.java.ui.CLI;
+import javafx.application.Application;
 
 public final class Tasky {
 
   public static void main(String[] args) {
-    new CLI().run();
-
+    // new CLI().run();
   }
 }
