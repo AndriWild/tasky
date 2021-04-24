@@ -7,8 +7,6 @@ import javafx.scene.layout.VBox;
 
 public class CenterArea extends HBox {
 
-
-
   Label lblTodo;
   Label lblDoing;
   Label lblDone;
@@ -23,6 +21,7 @@ public class CenterArea extends HBox {
 
 
   public CenterArea() {
+
     this.setPadding(new Insets(10));
     initializeControls();
     layoutControls();

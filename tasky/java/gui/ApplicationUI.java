@@ -1,7 +1,6 @@
 package tasky.java.gui;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 
 public class ApplicationUI extends BorderPane {
