@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import tasky.java.model.State;
 
 public class CenterArea extends HBox {
 
@@ -21,7 +22,6 @@ public class CenterArea extends HBox {
 
 
   public CenterArea() {
-
     this.setPadding(new Insets(10));
     initializeControls();
     layoutControls();
@@ -49,9 +49,9 @@ public class CenterArea extends HBox {
   }
 
   private void initializeRegions() {
-    regionTodo = new TaskField("2ecc71");
-    regionDoing = new TaskField("20Ac71");
-    regionDone = new TaskField("2ecFF1");
+    regionTodo = new TaskField("2ecc71", State.TODO);
+    regionDoing = new TaskField("20Ac71", State.DOING);
+    regionDone = new TaskField("2ecFF1", State.DONE);
   }
 
   private void initializeLabels() {
