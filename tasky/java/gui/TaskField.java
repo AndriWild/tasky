@@ -2,21 +2,30 @@ package tasky.java.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
+
+import javafx.collections.ListChangeListener;
+import javafx.collections.ListChangeListener.Change;
 import javafx.geometry.Insets;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Region;
+import tasky.java.model.State;
+import tasky.java.model.Task;
 
 public class TaskField extends FlowPane {
   private static final int TASKFIELD_HEIGHT = 500;
   private static final int TASKFIELD_WIDTH = Integer.MAX_VALUE;
-  private static final int REGION_HEIGHT = 80;
-  private static final int REGION_WIDTH = 80;
+  private String color;
+  private List<Task> tasks;
+  private final State state;
 
-  List<Region> regions;
 
+  public TaskField(String color, State state) {
+    this.color = color;
+    this.state = state;
+    initializeControls();
+    layoutControls();
+  }
 
-  public TaskField(String color) {
+  private void initializeControls() {
     this.setStyle("-fx-background-color: #" + color + ";");
     this.setPrefHeight(TASKFIELD_HEIGHT);
     this.setPrefWidth(TASKFIELD_WIDTH);
@@ -24,22 +33,42 @@ public class TaskField extends FlowPane {
     this.setHgap(10);
     this.setVgap(10);
     this.setPadding(new Insets(5));
-    initializeControls();
-    layoutControls();
+
+    tasks = new ArrayList<>();
+    ListChangeListener<Task> listener = change -> listChangeOccure(change);
+    ApplicationUI.getRepository().addListener(listener);
+
   }
 
-  private void initializeControls() {
-    regions = new ArrayList<>();
-    Stream.iterate(new Region(), n -> new Region()).limit(5).forEach(region -> {
-      region = new Region();
-      region.setPrefHeight(REGION_HEIGHT);
-      region.setPrefWidth(REGION_WIDTH);
-      region.setStyle("-fx-background-color: LIGHTGREY;");
-      regions.add(region);
-    });
+  private void listChangeOccure(Change<? extends Task> change) {
+    while (change.next()) {
+      if (change.wasPermutated()) {
+        for (int i = change.getFrom(); i < change.getTo(); ++i) {
+          // permutate
+          System.out.println("Permutet!");
+        }
+      } else if (change.wasUpdated()) {
+        System.out.println("Change was updated");
+      } else {
+        for (Task remitem : change.getRemoved()) {
+
+          if (this.getChildren().contains(remitem.getLabel())) {
+            System.out.println("Item removed: " + remitem);
+            this.getChildren().remove(remitem.getLabel());
+          }
+        }
+        for (Task additem : change.getAddedSubList()) {
+          System.out.println(additem);
+          if (additem.getStatus() == state) {
+            additem.getLabel().updateTitle(additem.getTitle());
+            this.getChildren().add(additem.getLabel());
+          }
+        }
+      }
+    }
   }
 
   private void layoutControls() {
-    this.getChildren().addAll(regions);
+
   }
 }
