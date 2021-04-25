@@ -1,16 +1,24 @@
 package tasky.java.model;
 
 import java.time.LocalDate;
+import tasky.java.gui.TaskLabel;
 
 public class Task {
 
-  public static Object getData;
   private int id;
   private TaskData data;
+  private TaskLabel label;
+  private static int idCounter = 1;
 
-  public Task(int id, TaskData data) {
-    this.id = id;
+  public Task(TaskData data) {
+    this.id = idCounter;
+    idCounter++;
     this.data = data;
+    this.label = new TaskLabel(data.getTitle(), id);
+  }
+
+  public TaskLabel getLabel() {
+    return this.label;
   }
 
   public int getId() {
@@ -71,9 +79,13 @@ public class Task {
 
   @Override
   public String toString() {
+    String dateTimeString = "";
+    if (data.getDate() != null) {
+      dateTimeString = data.getDate().toString();
+    }
     return "[ID:" + this.id + "]" + "\tTitle: " + data.getTitle() + "\tDescription: "
         + data.getDescription() + "\tStatus: " + data.getStatus().toString().toLowerCase()
-        + "\tFällig am: " + data.getDate().toString();
+        + "\tFällig am: " + dateTimeString;
   }
 
 }
