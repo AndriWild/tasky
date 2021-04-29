@@ -13,7 +13,7 @@ public class TaskMap implements TaskContainer {
   @Override
   public void add(TaskData task) {
     if (task != null) {
-      tasks.put(idCounter, new Task(idCounter++, task));
+      tasks.put(idCounter, new Task(task));
     }
   }
 

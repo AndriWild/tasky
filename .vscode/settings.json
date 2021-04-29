@@ -3,5 +3,8 @@
     "lib/**/*.jar",
     "tasky/lib/junit-4.13.jar",
     "tasky/lib/hamcrest-core-1.3.jar"
+  ],
+  "java.project.sourcePaths": [
+    "."
   ]
 }

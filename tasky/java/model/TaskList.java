@@ -10,7 +10,7 @@ public class TaskList implements TaskContainer {
 
   @Override
   public void add(TaskData taskData) {
-    tasks.add(new Task(idCounter++, taskData));
+    tasks.add(new Task(taskData));
   }
 
   @Override
